@@ -20,9 +20,13 @@ function obtenerPorID($pdo, $id_producto)
     $consultaVariantes->execute([':id_producto' => $id_producto]);
 
     $producto = $consultaProducto->fetch(PDO::FETCH_ASSOC);
+    if ($producto === false) {
+        return false;
+    }
     $variantes = $consultaVariantes->fetchALL(PDO::FETCH_ASSOC);
 
     $producto['variantes'] = $variantes;
+    
     return $producto;
 }
 ?>

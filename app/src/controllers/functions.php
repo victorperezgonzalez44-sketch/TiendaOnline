@@ -19,15 +19,6 @@ function normalizarTexto(string $texto): string
 
 }
 
-function formatearPrecio(int $centimos): string
-{
-
-    $euros = $centimos / 100;
-
-    return number_format($euros, 2, ",", ".") . " €";
-
-
-}
 
 function leerCadena(array $origen, string $clave): string
 {
