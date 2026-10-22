@@ -23,8 +23,9 @@ $usuarioAutenticado = isset($_SESSION['id_usuario']);
             </a>
 
             <nav class="main-nav" aria-label="Navegación principal">
-                <a href="./">Inicio</a>
-                <a href="./#productos">Productos</a>
+                <a href="./#productos">COLLECTION</a>
+                <a href="#">DROP</a>
+                <a href="#">PICKS</a>
             </nav>
 
             <div class="header-actions">
@@ -38,16 +39,51 @@ $usuarioAutenticado = isset($_SESSION['id_usuario']);
                     </svg>
                 </a>
 
-                <a class="header-icon" href="<?= $usuarioAutenticado ? '?cuenta' : '?login' ?>" aria-label="Mi cuenta"
-                    title="Mi cuenta">
+
+                <button type="button" class="header-icon profile-button" id="profile-button"
+                    aria-label="Abrir menú de perfil" aria-controls="profile-sidebar" aria-expanded="false">
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                         <circle cx="12" cy="8" r="4" />
                         <path d="M4 21v-2a8 8 0 0 1 16 0v2" />
                     </svg>
-                </a>
+                </button>
+
+
 
             </div>
         </div>
     </header>
+
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <aside class="profile-sidebar" id="profile-sidebar" aria-label="Menú de perfil" aria-hidden="true" inert>
+        <div class="sidebar-header">
+            <h2>Mi cuenta</h2>
+
+            <button type="button" class="sidebar-close" id="close-sidebar" aria-label="Cerrar menú">
+                &times;
+            </button>
+        </div>
+
+        <?php if ($usuarioAutenticado): ?>
+            <p class="sidebar-greeting">Bienvenido a Kayrox</p>
+
+            <nav class="sidebar-nav" aria-label="Menú de cuenta">
+                <a href="?cuenta">Mi perfil</a>
+                <a href="?pedidos">Mis pedidos</a>
+                <a href="?logout">Cerrar sesión</a>
+            </nav>
+        <?php else: ?>
+            <p class="sidebar-greeting">
+                Accede a tu cuenta para disfrutar de Kayrox.
+            </p>
+
+            <nav class="sidebar-nav" aria-label="Acceso a la cuenta">
+                <a href="?login">Iniciar sesión</a>
+                <a href="?registro">Crear cuenta</a>
+            </nav>
+        <?php endif; ?>
+    </aside>
 
     <main class="site-main">
