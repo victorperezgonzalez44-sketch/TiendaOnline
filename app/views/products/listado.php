@@ -1,26 +1,24 @@
 <h1>Productos Kayrox</h1>
 <section class="productos">
     <?php foreach ($productos as $producto): ?>
-
-        <article class="card-producto">
-            <h2>
-                <a href="?id=<?= $producto['id_producto'] ?>">
+        <a href="?id=<?= $producto['id_producto'] ?>">
+            <article class="card-producto">
+                <h2>
                     <?= $producto['nombre'] ?>
-                </a>
-            </h2>
-            <p>
-                <?= $producto['categoria'] ?>
-            </p>
-            <p>
-                <?= $producto['descripcion'] ?>
-            </p>
-            <p>
-                <strong>
-                    <?= $producto['precio'] ?> €
-                </strong>
-            </p>
+                </h2>
+                <p>
+                    <?= $producto['categoria'] ?>
+                </p>
+                <p>
+                    <?= $producto['descripcion'] ?>
+                </p>
+                <p>
+                    <strong>
+                        <?= $producto['precio'] ?> €
+                    </strong>
+                </p>
 
-        </article>
-
+            </article>
+        </a>
     <?php endforeach; ?>
 </section>
