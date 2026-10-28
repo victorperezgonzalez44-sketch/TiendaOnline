@@ -203,7 +203,7 @@ if (isset($_GET['registro'])) {
     require_once __DIR__ . '/../views/layouts/footer.php';
 
 } else {
-    $title = "Catálogo";
+    $title = "Inicio";
     $productos = obtenerTodos($pdo);
     require_once __DIR__ . '/../views/layouts/header.php';
     require_once __DIR__ . '/../views/products/listado.php';
