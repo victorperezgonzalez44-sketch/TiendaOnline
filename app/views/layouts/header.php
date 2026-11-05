@@ -11,6 +11,8 @@ $usuarioAutenticado = isset($_SESSION['id_usuario']);
     <meta name="theme-color" content="#094040">
     <title><?= escapar($title ?? 'Kayrox') ?> | Kayrox</title>
     <link rel="stylesheet" href="css/estilos.css">
+    <script src="js/carrusel.js" defer></script>
+    <script src="js/sidebar.js" defer></script>
 </head>
 
 <body>
@@ -23,9 +25,9 @@ $usuarioAutenticado = isset($_SESSION['id_usuario']);
             </a>
 
             <nav class="main-nav" aria-label="Navegación principal">
-                <a href="./#productos">COLLECTION</a>
-                <a href="#">DROP</a>
-                <a href="#">PICKS</a>
+                <a href="?productos">COLLECTION</a>
+                <!-- <a href="#">DROP</a>
+                <a href="#">PICKS</a> -->
             </nav>
 
             <div class="header-actions">

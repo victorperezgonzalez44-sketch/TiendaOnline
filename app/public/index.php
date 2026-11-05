@@ -202,11 +202,23 @@ if (isset($_GET['registro'])) {
     require_once __DIR__ . '/../views/products/detalle.php';
     require_once __DIR__ . '/../views/layouts/footer.php';
 
-} else {
-    $title = "Inicio";
+} elseif (isset($_GET['productos'])) {
+
+    $title = "Productos";
     $productos = obtenerTodos($pdo);
+
     require_once __DIR__ . '/../views/layouts/header.php';
     require_once __DIR__ . '/../views/products/listado.php';
+    require_once __DIR__ . '/../views/layouts/footer.php';
+
+} else {
+
+    $title = "Inicio";
+    $productos = obtenerTodos($pdo);
+
+    require_once __DIR__ . '/../views/layouts/header.php';
+    require_once __DIR__ . '/../views/layouts/hero.php';
+    require_once __DIR__ . '/../views/general/homepage.php';
     require_once __DIR__ . '/../views/layouts/footer.php';
 }
 

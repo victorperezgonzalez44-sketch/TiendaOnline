@@ -1,26 +1,35 @@
-<?php if (isset($resultado['error'])): ?>
+<main class="site-main">
+    <div class="login-container">
+        
+        <?php if (isset($resultado['error'])): ?>
+            <div class="alerta alerta-error">
+                <?= htmlspecialchars($resultado['error']) ?>
+            </div>
+        <?php endif; ?>
 
-    <p><?= $resultado['error'] ?></p>
+        <?php if (isset($resultado['exito'])): ?>
+            <div class="alerta alerta-exito">
+                Inicio de sesión correcto
+            </div>
+        <?php else: ?>
+            <form class="login-form" method="POST">
+                <h2>Iniciar Sesión</h2>
+                
+                <div class="producto-campo">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required autocomplete="email">
+                </div>
 
-<?php endif ?>
+                <div class="producto-campo">
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
 
-<?php if (isset($resultado['exito'])): ?>
+                <button type="submit" class="producto-boton">
+                    <span>Iniciar sesión</span>
+                </button>
+            </form>
+        <?php endif; ?>
 
-    <p>Inicio de sesión correcto</p>
-
-<?php else: ?>
-
-    <form method="POST">
-        <div>
-            <label for="email">Email: </label>
-            <input type="email" id="email" name="email">
-        </div>
-
-        <div>
-            <label for="password">Contraseña: </label>
-            <input type="password" id="password" name="password">
-        </div>
-        <button type="submit">Iniciar sesión</button>
-    </form>
-
-<?php endif ?>
+    </div>
+</main>
