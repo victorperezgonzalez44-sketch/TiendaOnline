@@ -22,6 +22,26 @@ if (isset($_GET['registro'])) {
     require_once __DIR__ . '/../views/auth/login.php';
     require_once __DIR__ . '/../views/layouts/footer.php';
 
+} elseif (isset($_GET['cuenta'])) {
+
+    $title = "Mi perfil";
+
+    if (!isset($_SESSION['id_usuario'])) {
+        header('Location: ?login');
+        exit;
+    }
+
+    $usuario = obtenerUsuarioPorID($pdo, $_SESSION['id_usuario']);
+
+    if ($usuario === false) {
+        session_destroy();
+        header('Location: ?login');
+        exit;
+    }
+
+    require_once __DIR__ . '/../views/layouts/header.php';
+    require_once __DIR__ . '/../views/auth/cuenta.php';
+    require_once __DIR__ . '/../views/layouts/footer.php';
 } elseif (isset($_GET['carrito'])) {
 
     if (isset($_SESSION['id_usuario'])) {
@@ -205,7 +225,36 @@ if (isset($_GET['registro'])) {
 } elseif (isset($_GET['productos'])) {
 
     $title = "Productos";
-    $productos = obtenerTodos($pdo);
+    $nombreCategoria = null;
+    if (isset($_GET['categoria'])) {
+        $id_categoria = filter_var($_GET['categoria'], FILTER_VALIDATE_INT);
+
+        if ($id_categoria === false || $id_categoria < 1) {
+            http_response_code(400);
+            exit('Categoria no valida');
+        }
+
+        $categorias = obtenerCategorias($pdo);
+        $categoriaEncontrada = false;
+
+        foreach ($categorias as $categoria) {
+            if ((int) $categoria['id_categoria'] === $id_categoria) {
+                $categoriaEncontrada = true;
+                $nombreCategoria = $categoria['nombre'];
+                break;
+            }
+        }
+        if (!$categoriaEncontrada) {
+            http_response_code(404);
+            exit('Categoría no encontrada');
+        }
+        $productos = obtenerPorCategoria($pdo, $id_categoria);
+        $title = $nombreCategoria;
+    } else {
+        $productos = obtenerTodos($pdo);
+    }
+
+
 
     require_once __DIR__ . '/../views/layouts/header.php';
     require_once __DIR__ . '/../views/products/listado.php';
@@ -215,6 +264,7 @@ if (isset($_GET['registro'])) {
 
     $title = "Inicio";
     $productos = obtenerTodos($pdo);
+    $categorias = obtenerCategorias($pdo);
 
     require_once __DIR__ . '/../views/layouts/header.php';
     require_once __DIR__ . '/../views/layouts/hero.php';

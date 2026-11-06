@@ -1,4 +1,13 @@
-<h1>Productos Kayrox</h1>
+<h1>
+    <?= isset($nombreCategoria)
+        ? escapar($nombreCategoria)
+        : 'Todos los productos' ?>
+</h1>
+<p>
+    <?= isset($nombreCategoria)
+        ? 'Descubre nuestra colección de ' . escapar(strtolower($nombreCategoria))
+        : 'Descubre todos los productos de Kayrox' ?>
+</p>
 <section class="productos">
     <?php foreach ($productos as $producto): ?>
         <a href="?id=<?= $producto['id_producto'] ?>">

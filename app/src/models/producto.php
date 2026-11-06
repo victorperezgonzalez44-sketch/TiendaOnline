@@ -26,7 +26,33 @@ function obtenerPorID($pdo, $id_producto)
     $variantes = $consultaVariantes->fetchALL(PDO::FETCH_ASSOC);
 
     $producto['variantes'] = $variantes;
-    
+
     return $producto;
 }
-?>
+
+function obtenerCategorias($pdo)
+{
+    $consulta = $pdo->query(
+        "SELECT * FROM categorias ORDER BY nombre ASC"
+    );
+
+    return $consulta->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function obtenerPorCategoria($pdo, $id_categoria)
+{
+    $consulta = $pdo->prepare(
+        "SELECT productos.*, categorias.nombre AS categoria
+         FROM productos
+         JOIN categorias
+         ON productos.id_categoria = categorias.id_categoria
+         WHERE productos.id_categoria = :id_categoria"
+    );
+
+    $consulta->execute([
+        ':id_categoria' => $id_categoria
+    ]);
+
+    return $consulta->fetchAll(PDO::FETCH_ASSOC);
+}

@@ -1,34 +1,23 @@
-
 <section class="homepage">
 
-    <!-- Carrusel de productos destacados -->
     <section class="featured-products" id="productos-destacados">
 
         <div class="section-heading">
-            <div>
-                <span class="section-eyebrow">KAYROX COLLECTION</span>
-                <h2>Productos destacados</h2>
-                <p>Descubre los detalles que marcan la diferencia.</p>
-            </div>
+            <div class="section-heading-inner">
+                <div>
+                    <span class="section-eyebrow">KAYROX COLLECTION</span>
+                    <h2>Productos destacados</h2>
+                    <p>Descubre los detalles que marcan la diferencia.</p>
+                </div>
 
-            <div class="carousel-controls">
-                <button
-                    type="button"
-                    class="carousel-button"
-                    id="carousel-prev"
-                    aria-label="Productos anteriores"
-                >
-                    &#8592;
-                </button>
-
-                <button
-                    type="button"
-                    class="carousel-button"
-                    id="carousel-next"
-                    aria-label="Productos siguientes"
-                >
-                    &#8594;
-                </button>
+                <div class="carousel-controls">
+                    <button type="button" class="carousel-button" id="carousel-prev" aria-label="Productos anteriores">
+                        &#8592;
+                    </button>
+                    <button type="button" class="carousel-button" id="carousel-next" aria-label="Productos siguientes">
+                        &#8594;
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -40,10 +29,7 @@
 
                     <article class="featured-product-card">
 
-                        <a
-                            href="?id=<?= (int) $producto['id_producto'] ?>"
-                            class="featured-product-link"
-                        >
+                        <a href="?id=<?= (int) $producto['id_producto'] ?>" class="featured-product-link">
                             <div class="featured-product-image">
                                 <span>KAYROX</span>
                             </div>
@@ -84,16 +70,33 @@
 
     </section>
 
+    <section class="categories-section" id="categorias">
 
-    <!-- Espacio experimental 1 -->
-    <section class="homepage-experiment experiment-one">
-        <!-- Tu contenido irá aquí -->
+        <div class="section-heading">
+            <div class="section-heading-inner">
+                <div>
+                    <span class="section-eyebrow">ENCUENTRA TU ESTILO</span>
+                    <h2>Explora por categoría</h2>
+                    <p>Encuentra los detalles que mejor encajan contigo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="categories-grid">
+
+            <?php foreach ($categorias as $categoria): ?>
+
+                <a href="?productos&categoria=<?= (int) $categoria['id_categoria'] ?>" class="category-card">
+
+                    <div class="category-image">
+                        <span>
+                            <?= escapar($categoria['nombre']) ?>
+                        </span>
+                    </div>
+
+                </a>
+
+            <?php endforeach; ?>
+
+        </div>
     </section>
-
-
-    <!-- Espacio experimental 2 -->
-    <section class="homepage-experiment experiment-two">
-        <!-- Tu contenido irá aquí -->
-    </section>
-
 </section>
